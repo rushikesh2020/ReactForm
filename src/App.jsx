@@ -6,19 +6,25 @@ function App() {
       firstName : '',
       lastName : '',
       email : '',
-      comments : ''
+      comments : '',
+      isFriendly : true
     }
   )
 
+  const CheckBoxStyle={
+    display: "inline",
+    marginRight: "0.75rem"
+  }
+
   function handleChange(event){
-    // console.log(event.target.value)
-    // console.log(event.target.name)
+    //destructuring event.target object
+    const {name, value, type, checked} = event.target
     setFormData(prevFormData=>{
       return {
         ...prevFormData,
         //ES6 feature that allows computed value to be key of a property
         //just need to wrap computed value in square bracket []
-        [event.target.name] : event.target.value
+        [name] : type ==='checkbox'? checked : value
       }
     })
   }
@@ -54,7 +60,16 @@ function App() {
         placeholder='Comments'
         value={formData.comments}
       />
-      
+      <input style={CheckBoxStyle}
+        type='checkbox'
+        id='isFriendly'
+        checked = {formData.isFriendly}
+        onChange={handleChange}
+        name='isFriendly'
+      />
+      <label htmlFor="isFriendly">Are you friendly?</label>
+      <br/>
+
     </form>
   );
 }
