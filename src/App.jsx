@@ -48,6 +48,12 @@ function App() {
         name="email"
         value={formData.email}
       />
+      <textarea 
+        onChange={handleChange}
+        name='comments'
+        placeholder='Comments'
+        value={formData.comments}
+      />
       
     </form>
   );
